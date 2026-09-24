@@ -1,0 +1,26 @@
+name: Prueba de Tokens
+
+on:
+  push:
+    branches: [ main, master, feature/mifeature ]
+
+jobs:
+  comparar-tokens:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Comparar DEV_TOKEN contra LOCAL_DEV_TOKEN
+        env:
+          SECRET_DEV: ${{ secrets.DEV_TOKEN }}
+        run: |
+          echo "Ejecutando prueba de coincidencia..."
+          
+          if [ "$LOCAL_DEV_TOKEN" = "$SECRET_DEV" ]; then
+            echo "SUCCESS: El valor de DEV_TOKEN (Secret) y LOCAL_DEV_TOKEN (Local) COINCIDEN."
+          else
+            echo "ERROR: Los valores NO coinciden."
+            echo "Valor de LOCAL_DEV_TOKEN local detectado: '$LOCAL_DEV_TOKEN'"
+            exit 1
+          fi
