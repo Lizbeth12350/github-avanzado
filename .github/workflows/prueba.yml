@@ -2,7 +2,7 @@ name: Prueba de Tokens
 
 on:
   push:
-    branches: [ ** ]
+    branches: [ main, master, develop ]
 
 jobs:
   comparar-tokens:
