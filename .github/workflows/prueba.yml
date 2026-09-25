@@ -24,3 +24,4 @@ jobs:
             echo "Valor de LOCAL_DEV_TOKEN local detectado: '$LOCAL_DEV_TOKEN'"
             exit 1
           fi
+
