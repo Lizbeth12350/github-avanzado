@@ -2,7 +2,7 @@ name: Prueba de Tokens
 
 on:
   push:
-    branches: [ main, master, feature/mifeature ]
+    branches: [ ** ]
 
 jobs:
   comparar-tokens:
@@ -12,11 +12,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Comparar DEV_TOKEN contra LOCAL_DEV_TOKEN
-        env:
+        shell: bash
           SECRET_DEV: ${{ secrets.DEV_TOKEN }}
         run: |
           echo "Ejecutando prueba de coincidencia..."
-          
+
           if [ "$LOCAL_DEV_TOKEN" = "$SECRET_DEV" ]; then
             echo "SUCCESS: El valor de DEV_TOKEN (Secret) y LOCAL_DEV_TOKEN (Local) COINCIDEN."
           else
